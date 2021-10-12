@@ -1,11 +1,18 @@
 import "./Todo.css";
 
-function Todo({ title, completed, children }) {
+function Todo({ id, title, completed, children, onRemove, onToggle }) {
   return (
-    <div style={completed ? { textDecoration: "line-through" } : {}}>
-      {/* TODO! {title} completed: {completed ? "YES!" : "NO :("} */}
-      {children}
-    </div>
+    <>
+      <span
+        onClick={() => onToggle(id)}
+        style={completed ? { textDecoration: "line-through" } : {}}
+      >
+        {children}
+      </span>
+      <span onClick={() => onRemove(id)} style={{ cursor: "pointer" }}>
+        🗑
+      </span>
+    </>
   );
 }
 
