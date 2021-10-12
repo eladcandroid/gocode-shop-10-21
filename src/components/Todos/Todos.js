@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Counter from "../Counter/Counter";
 import Todo from "../Todo/Todo";
 import "./Todos.css";
@@ -8,7 +8,11 @@ function Todos() {
 
   const [todos, setTodos] = useState([]);
 
+  const inputRef = useRef(null);
+
   useEffect(() => {
+    inputRef.current.focus();
+
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then((res) => {
         return res.json();
@@ -33,7 +37,12 @@ function Todos() {
   return (
     <div>
       <div>Todos count: {todos.length}</div>
-      <input type="text" onChange={(e) => (newTodo = e.target.value)} />
+      <input
+        ref={inputRef}
+        type="text"
+        onChange={(e) => (newTodo = e.target.value)}
+        placeholder="Enter a new title"
+      />
       <button
         onClick={() => {
           setTodos([
