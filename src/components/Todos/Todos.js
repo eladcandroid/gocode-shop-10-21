@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import Counter from "../Counter/Counter";
 import Todo from "../Todo/Todo";
@@ -8,11 +9,7 @@ function Todos() {
 
   const [todos, setTodos] = useState([]);
 
-  const inputRef = useRef(null);
-
   useEffect(() => {
-    inputRef.current.focus();
-
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then((res) => {
         return res.json();
@@ -37,11 +34,13 @@ function Todos() {
   return (
     <div>
       <div>Todos count: {todos.length}</div>
-      <input
-        ref={inputRef}
-        type="text"
+      <br />
+      <TextField
         onChange={(e) => (newTodo = e.target.value)}
+        label="New todo"
+        color="secondary"
         placeholder="Enter a new title"
+        autoFocus
       />
       <button
         onClick={() => {

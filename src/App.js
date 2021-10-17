@@ -4,6 +4,7 @@ import Todos from "./components/Todos/Todos";
 import React, { useState } from "react";
 import Counter from "./components/Counter/Counter";
 import MyContext from "./MyContext";
+import Button from "@mui/material/Button";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -14,7 +15,11 @@ function App() {
   return (
     <MyContext.Provider value={[isDarkMode, setIsDarkMode]}>
       <div style={isDarkMode ? { background: "black", color: "white" } : {}}>
-        <button onClick={() => changeToDark()}>Change to dark mode</button>
+        <Button variant="outlined" onClick={() => changeToDark()}>
+          Change to dark mode
+        </Button>
+        <br />
+        <br />
         <br />
         <Todos />
       </div>
